@@ -23,6 +23,34 @@ void draw() {
   //Zooming
   scale(zoom);
   
+  //Zooming with Buttons (cuz Github dumb)
+  if (mousePressed) {
+    if (mouseButton == LEFT) {
+      scroll = -1;
+    } else if (mouseButton == RIGHT) {
+      scroll = 1;
+    }
+    if (zoom > 15) {
+      dZoom = 2;
+    } else if (zoom > 5) {
+      dZoom = 1;
+    } else {
+      dZoom = 0.5;
+    }
+    
+    if (scroll == -1) {
+      zoom+=dZoom;
+    } else if (scroll == 1) {
+      zoom-=dZoom;
+    }
+    if(zoom < 1) {
+      zoom = 30;
+    }
+    if (zoom > 30) {
+      zoom = 1;
+    }
+  }
+  
   orb(810, 0);
 }
 
@@ -56,8 +84,8 @@ void orb(int scale, int col) {
   }
 }
 
-//Zooming
-void mouseWheel(MouseEvent event) {
+//Zooming with SCROLL!!!
+/*void mouseWheel(MouseEvent event) {
   scroll = event.getCount();
   if (zoom > 15) {
     dZoom = 2;
@@ -78,5 +106,4 @@ void mouseWheel(MouseEvent event) {
   if (zoom > 30) {
     zoom = 1;
   }
-  System.out.println(zoom);
-}
+}*/
